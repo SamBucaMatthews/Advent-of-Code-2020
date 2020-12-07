@@ -14,8 +14,8 @@ def count_trees(right_slope, down_slope):
 
     return count
 
-with open("input.txt") as file:
-    rows = file.read().splitlines()
+with open("input.txt") as input_file:
+    rows = input_file.read().splitlines()
 
 cases = (
     (1, 1),

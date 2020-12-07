@@ -1,5 +1,5 @@
-with open("input.txt") as file:
-    input = file.read().splitlines()
+with open("input.txt") as input_file:
+    input = input_file.read().splitlines()
 
 def is_valid(value):
     parts = value.split(": ")
