@@ -22,12 +22,33 @@ def has_valid_fields(fields: dict):
     if int(fields.get("eyr")) < 2020 or int(fields.get("eyr")) > 2030:
         return False
 
-    # TODO: Height
+    if not valid_height(fields.get("hgt")):
+        return False
 
     if not re.fullmatch("#[0-9a-zA-Z]{6}", fields.get("hcl")):
         return False
 
-    return True      
+    if not re.fullmatch(r"\d{9}", fields.get("pid")):
+        return False        
+
+    if not fields.get("ecl") in ["amb", "blu", "brn", "gry", "grn", "hzl", "oth"]:
+        return False
+
+    return True
+
+def valid_height(height: str):
+    parts = re.split(r"(in|cm)", height.lower())
+    if len(parts) != 3:
+        return False
+
+    value = int(parts[0])
+    unit = parts[1]
+
+    if unit == "cm":
+        return value >= 150 and value <= 193
+    
+    return value >= 59 and value <= 76
+
 
 def is_valid(passport: dict):
     return has_required_fields(passport.keys()) and has_valid_fields(passport)    
