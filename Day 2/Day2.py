@@ -1,5 +1,5 @@
 with open("input.txt") as input_file:
-    input = input_file.read().splitlines()
+    inputs = input_file.read().splitlines()
 
 def is_valid(value):
     parts = value.split(": ")
@@ -13,6 +13,6 @@ def is_valid(value):
 
     return count >= min and count <= max
 
-results = [is_valid(i) for i in input]
+results = [is_valid(i) for i in inputs]
 
 print(results.count(True))
