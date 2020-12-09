@@ -29,12 +29,18 @@ def get_column_number(boarding_pass: str):
 def get_seat_id(boarding_pass: str):
     return get_row_number(boarding_pass) * 8 + get_column_number(boarding_pass)
 
+def find_seat_id(rows):
+    rows.sort()
+    return [x for x in range(rows[0], rows[-1]+1) if x not in rows][0]
+    
+
 with open("input.txt") as input_file:
     inputs = input_file.read().splitlines()
 
 rows = [get_seat_id(boarding_pass) for boarding_pass in inputs]
 
 print(max(rows))
+print(find_seat_id(rows))
 
 print(get_seat_id("BFFFBBFRRR") == 567)
 print(get_seat_id("FFFBBBFRRR") == 119)
